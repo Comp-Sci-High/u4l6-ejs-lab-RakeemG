@@ -73,7 +73,7 @@ app.use((req, res, next) => {
 })
 
 // Task 1: Set up the static middleware
-app.use(express.static('public'));
+app.use(express.static(__dirname + "/public"));
 
 
 
@@ -100,7 +100,10 @@ app.get("/mens", (req, res) => {
 
 // Task 5: Set up the route handler for /item/0 which sends back the first item in product.ejs
 
-
+app.get('/item/0', (req, res) => {
+  const firstProduct = products[0];
+  res.render('product', { product: firstProduct });
+});
 
 // Task 6: Plug in the values in product.ejs to get the page working
 // Extra credit: modify the /item/0 route handler to have dynamic path parameter and return any item's data
